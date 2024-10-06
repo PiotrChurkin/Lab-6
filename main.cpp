@@ -6,41 +6,46 @@ int main()
 
     std::cin >> N;
     int A[1000] = {0};
-    int B[1000] = {0};
+    int B = 0;
 
     bool e = 0;
     short t = 0;
     short k = 0;
 
-    for(int i = 0; i < N; i++)
+    for(short i = 0; i < N; i++)
     {
         e = 0;
-        std::cin >> A[i];
-        B[i] = A[i];
-        t = B[i]%10;
-        while(B[i]!=0)
-        {
-            if(B[i]%10==t)
-                e=1;
 
-            if(e==0)
+        std::cin >> A[i];       // Считывает число в консоли
+
+        B = A[i];
+        t = B%10;
+
+        while(B!=0)     // Если в числе все цифры одинаковы, то возвращает e = True
+        {
+            if(B%10==t)
+                e = 1;
+            else
+                e = 0;
+
+            if(!e)
                 break;
             
-            B[i] = B[i]/10;
+            B = B/10;
         }
 
-        if(e==1)
+        if(e)
             k=k+1;
     }
 
     int replacement = 0;
 
-    if(k>=3)
+    if(k>=3)    // Если количество чисел, в которых все цифры одинаковы, больше 3, то производится сортировка массива swap-ом
     {
 
-        for(int i = 0; i <= N-2; i++)
+        for(int i = 0; i < N-1; i++)
         {
-            for(int j = 1; j <= N-1; j++)
+            for(int j = i+1; j < N; j++)
             {
                 if(A[i] < A[j])
                 {
@@ -51,16 +56,17 @@ int main()
             }
 
         }
+        std::cout << "SWAP sorting was complated" ;
     }
+    else
+        std::cout << "SWAP sorting wasn't complated" ;
 
     std::cout << "//////////////////" << std::endl;
 
-    for(int i = 0; i < N; i++)
+    for(int i = 0; i < N; i++)      // Выводит массив
     {
         std::cout << A[i] << std::endl;
     }
 
     return 0;
 }
-
-
