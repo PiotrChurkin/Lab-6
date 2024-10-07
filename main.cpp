@@ -9,8 +9,8 @@ int main()
     int B = 0;
 
     bool e = 0;
-    short t = 0;
-    short k = 0;
+    int t = 0;
+    unsigned short k = 0;
 
     for(short i = 0; i < N; i++)
     {
@@ -18,7 +18,7 @@ int main()
 
         std::cin >> A[i];       // Считывает число в консоли
 
-        B = A[i];
+        B = abs(A[i]);
         t = B%10;
 
         while(B!=0)     // Если в числе все цифры одинаковы, то возвращает e = True
@@ -43,9 +43,9 @@ int main()
     if(k>=3)    // Если количество чисел, в которых все цифры одинаковы, больше 3, то производится сортировка массива swap-ом
     {
 
-        for(int i = 0; i < N-1; i++)
+        for(unsigned short i = 0; i < N-1; i++)
         {
-            for(int j = i+1; j < N; j++)
+            for(unsigned short j = i+1; j < N; j++)
             {
                 if(A[i] < A[j])
                 {
@@ -63,7 +63,7 @@ int main()
 
     std::cout << "//////////////////" << std::endl;
 
-    for(int i = 0; i < N; i++)      // Выводит массив
+    for(unsigned short i = 0; i < N; i++)      // Выводит массив
     {
         std::cout << A[i] << std::endl;
     }
