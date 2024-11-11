@@ -7,7 +7,6 @@ int main()
 {
     int A[20000] = {0};
     unsigned short N = 0;
-    int Element = 0;
     
 
     std::cin >> N;
@@ -25,29 +24,29 @@ int main()
         std::cin >> A[i];   
     }
 
-    for(unsigned short i = 0; i < N; i++)
+    for(unsigned short i = 0; i < iter; i++)
     {
         if(MultiplicityOfSumOfDigits(A[i]))
         {
-            for(unsigned short k = i; k < N-1; k++)
+            for(unsigned short k = i; k < iter-1; k++)
             {
                 A[k] = A[k+1];
             }
+            A[iter-1] = 0;
+            i = i - 1;
             iter = iter - 1;
         }
         else if(quantityOfRecurringDigits(A[i]))
         {
-            for(unsigned short j = N; j > (i+1); j--)
+            for(unsigned short j = iter; j > (i+1); j--)
             {
                 A[j] = A[j-1];
             }
             A[i+1] = A[i];
-            iter = iter + 2;
-        }
-        else
-        {
+            i = i + 1;
             iter = iter + 1;
         }
+
     }
 
 
@@ -78,7 +77,7 @@ bool MultiplicityOfSumOfDigits(int x)
 bool quantityOfRecurringDigits(int x)
 {
     int number = abs(x);
-    int B[20] = {0};
+    int B[10] = {0};
     unsigned short lenght = 0;
 
     for(unsigned short i = 0; number!=0; i++)
@@ -95,9 +94,9 @@ bool quantityOfRecurringDigits(int x)
         for(unsigned short j = i+1; j < lenght; j++)
         {
             if(B[i]==B[j])
-                k+=1;
+                return true;
         }
     }
 
-    return (k!=0);
+    return false;
 }
